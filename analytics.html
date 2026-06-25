@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Analytics · VesselGuard AI</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#0E6E63" />
+<link rel="icon" type="image/png" href="icons/favicon-32.png" />
+<link rel="apple-touch-icon" href="icons/icon-180.png" />
+</head>
+<body>
+
+<div class="app-shell">
+  <nav class="navbar">
+    <div class="brand"><span class="dot"></span>VesselGuard AI</div>
+    <div class="nav-right">
+      <button id="installAppBtn" class="btn btn-outline" style="display:none;">⬇ Install app</button>
+      <a href="dashboard.html" class="btn btn-outline">Back to dashboard</a>
+      <button class="btn btn-outline" id="logoutBtn">Log out</button>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="page-head">
+      <span class="eyebrow">Insights</span>
+      <h1>Screening analytics</h1>
+      <p>Visual summary of all blockage risk screenings performed in your account.</p>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">TOTAL SCREENINGS</div>
+        <div class="stat-value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">HIGH RISK CASES</div>
+        <div class="stat-value" id="statHigh" style="color:#D14444;">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">AVERAGE RISK</div>
+        <div class="stat-value" id="statAvg">0%</div>
+      </div>
+    </div>
+
+    <div class="chart-grid">
+      <div class="card chart-card">
+        <div class="card-head" style="padding:0 0 14px;">
+          <h3>Risk level distribution</h3>
+        </div>
+        <canvas id="riskDistChart"></canvas>
+      </div>
+      <div class="card chart-card">
+        <div class="card-head" style="padding:0 0 14px;">
+          <h3>Risk % trend over time</h3>
+        </div>
+        <canvas id="riskTrendChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card chart-card">
+      <div class="card-head" style="padding:0 0 14px;">
+        <h3>Screenings per month</h3>
+      </div>
+      <canvas id="monthlyChart"></canvas>
+    </div>
+
+    <div id="emptyState" class="empty-row" style="display:none; margin-top: 24px;">
+      No prediction data yet. Run a screening from the dashboard to see analytics here.
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/pwa.js"></script>
+<script src="js/analytics.js"></script>
+</body>
+</html>

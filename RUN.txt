@@ -1,0 +1,29 @@
+DATABASE (MySQL)
+mysql -u root -p < database/schema.sql
+
+ML SERVICE (Python 3.11)
+cd ml
+pip install -r requirements.txt
+python generate_dataset.py
+python train_model.py
+python app.py
+-> runs on http://localhost:5001
+
+BACKEND (Spring Boot / Java 17)
+cd backend
+mvn spring-boot:run
+-> runs on http://localhost:8080
+(edit src/main/resources/application.properties if your MySQL username/password differ from root/root)
+
+FRONTEND
+Open frontend/login.html directly in a browser
+or serve it:
+cd frontend
+python -m http.server 5500
+-> http://localhost:5500/login.html
+
+START ORDER
+1. MySQL running, schema.sql executed
+2. ml/app.py running on port 5001
+3. backend (Spring Boot) running on port 8080
+4. open frontend/login.html

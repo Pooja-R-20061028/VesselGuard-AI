@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard · VesselGuard AI</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#0E6E63" />
+<link rel="icon" type="image/png" href="icons/favicon-32.png" />
+<link rel="apple-touch-icon" href="icons/icon-180.png" />
+</head>
+<body>
+
+<div class="app-shell">
+  <nav class="navbar">
+    <div class="brand"><span class="dot"></span>VesselGuard AI</div>
+    <div class="nav-right">
+      <button id="installAppBtn" class="btn btn-outline" style="display:none;">⬇ Install app</button>
+      <span class="user-pill" id="userPill"></span>
+      <a href="analytics.html" class="btn btn-outline">Analytics</a>
+      <button class="btn btn-outline" id="logoutBtn">Log out</button>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="page-head" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div>
+        <span class="eyebrow">Screening dashboard</span>
+        <h1>Welcome back, <span id="welcomeName"></span></h1>
+        <p>Review patient screenings and blockage risk history.</p>
+      </div>
+      <button class="btn btn-primary" id="newPredictionBtn">+ New screening</button>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">TOTAL SCREENINGS</div>
+        <div class="stat-value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">HIGH RISK CASES</div>
+        <div class="stat-value" id="statHigh" style="color:#D14444;">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">AVERAGE RISK</div>
+        <div class="stat-value" id="statAvg">0%</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-head">
+        <h3>Prediction history</h3>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Patient</th>
+            <th>Risk %</th>
+            <th>Risk level</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="historyBody">
+          <tr><td colspan="5" class="empty-row">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Recent patients</h3>
+      </div>
+      <div class="detail-list" id="patientList">
+        <div class="empty-row">Loading...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/pwa.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

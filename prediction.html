@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>New screening · VesselGuard AI</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#0E6E63" />
+<link rel="icon" type="image/png" href="icons/favicon-32.png" />
+<link rel="apple-touch-icon" href="icons/icon-180.png" />
+</head>
+<body>
+
+<div class="app-shell">
+  <nav class="navbar">
+    <div class="brand"><span class="dot"></span>VesselGuard AI</div>
+    <div class="nav-right">
+      <button id="installAppBtn" class="btn btn-outline" style="display:none;">⬇ Install app</button>
+      <a href="dashboard.html" class="btn btn-outline">Back to dashboard</a>
+      <button class="btn btn-outline" id="logoutBtn">Log out</button>
+    </div>
+  </nav>
+
+  <div class="page" style="max-width: 880px;">
+    <div class="page-head">
+      <span class="eyebrow">Patient intake</span>
+      <h1>New vessel blockage screening</h1>
+      <p>Enter patient vitals and clinical indicators to generate an AI risk estimate.</p>
+    </div>
+
+    <div class="form-error" id="errorBox" style="margin: 0 0 16px;"></div>
+
+    <form id="predictionForm" class="card" novalidate>
+      <div class="form-grid">
+
+        <div class="section-label">Patient details</div>
+        <div class="field span-2">
+          <label for="name">Full name</label>
+          <input type="text" id="name" placeholder="Patient name" required />
+        </div>
+        <div class="field">
+          <label for="age">Age</label>
+          <input type="number" id="age" min="1" max="120" placeholder="54" required />
+        </div>
+        <div class="field">
+          <label for="gender">Gender</label>
+          <select id="gender" required>
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div class="field span-2">
+          <label for="contact">Contact number</label>
+          <input type="text" id="contact" placeholder="+91 98765 43210" />
+        </div>
+        <div class="field">
+          <label for="height">Height (cm)</label>
+          <input type="number" id="height" min="50" max="250" placeholder="170" required />
+        </div>
+        <div class="field">
+          <label for="weight">Weight (kg)</label>
+          <input type="number" id="weight" min="10" max="300" placeholder="70" required />
+        </div>
+        <div class="field">
+          <label>BMI (auto-calculated)</label>
+          <div id="bmiPreview" class="bmi-preview">&mdash;</div>
+        </div>
+
+        <div class="section-label">Vital signs</div>
+        <div class="field">
+          <label for="trestbps">Resting blood pressure (mm Hg)</label>
+          <input type="number" id="trestbps" min="50" max="250" placeholder="130" required />
+        </div>
+        <div class="field">
+          <label for="chol">Serum cholesterol (mg/dl)</label>
+          <input type="number" id="chol" min="100" max="700" placeholder="245" required />
+        </div>
+        <div class="field">
+          <label for="thalach">Max heart rate achieved</label>
+          <input type="number" id="thalach" min="50" max="250" placeholder="150" required />
+        </div>
+        <div class="field">
+          <label for="fbs">Fasting blood sugar &gt; 120 mg/dl</label>
+          <select id="fbs" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="restecg">Resting ECG result</label>
+          <select id="restecg" required>
+            <option value="0">Normal</option>
+            <option value="1">ST-T wave abnormality</option>
+            <option value="2">Left ventricular hypertrophy</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="oldpeak">ST depression (oldpeak)</label>
+          <input type="number" id="oldpeak" step="0.1" min="0" max="10" placeholder="1.0" required />
+        </div>
+
+        <div class="section-label">Cardiac indicators</div>
+        <div class="field">
+          <label for="cp">Chest pain type</label>
+          <select id="cp" required>
+            <option value="0">Typical angina</option>
+            <option value="1">Atypical angina</option>
+            <option value="2">Non-anginal pain</option>
+            <option value="3">Asymptomatic</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="exang">Exercise induced angina</label>
+          <select id="exang" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="slope">Slope of peak exercise ST</label>
+          <select id="slope" required>
+            <option value="0">Upsloping</option>
+            <option value="1">Flat</option>
+            <option value="2">Downsloping</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ca">Major vessels colored (fluoroscopy)</label>
+          <select id="ca" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="thal">Thalassemia</label>
+          <select id="thal" required>
+            <option value="0">Normal</option>
+            <option value="1">Fixed defect</option>
+            <option value="2">Reversible defect</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-footer">
+        <a href="dashboard.html" class="btn btn-outline">Cancel</a>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Analyze risk</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/pwa.js"></script>
+<script src="js/prediction.js"></script>
+</body>
+</html>
